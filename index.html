@@ -15,8 +15,22 @@
 </head>
 <body>
 
-<div id="app">
-  <input type="text" v-model="query" @keyup.enter='search'>
+<div id="app" class="container">
+<header>
+  <div class="casella-input">
+    <input type="text" v-model="query" @keyup.enter='search'>
+  </div>
+</header>
+  <main>
+    <div class="cartolina" v-for="film in films">
+      <h1>{{film.title}}</h1>
+      <h2>{{film.original_title}}</h2>
+      <h3>{{film.original_language}}</h3>
+      <i class="far fa-star"></i>
+      <h4>{{film.vote_average}}</h4>
+
+    </div>
+  </main>
 </div>
 
 
