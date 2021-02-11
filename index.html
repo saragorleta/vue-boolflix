@@ -30,16 +30,18 @@
   </div>
 </header>
   <main>
-    <div class="cartolina" v-for="film in films">
-      <h1>{{film.title}}</h1>
-      <h2>{{film.original_title}}</h2>
-      <img :src="'image.tmdb.org/t/p/w342/'+ film.poster_path" alt="">
-      <h3>{{film.language}}</h3>
+    <div class="contenitore-film" v-for="film in films">
+      <h1>{{film.title}}ciao</h1>
+      <h2>{{film.original_title}}ciao</h2>
+        <div class="copertina">
+          <img :src="'https://image.tmdb.org/t/p/w342/'+ film.poster_path" alt="">
+        </div>
+      <h3>{{film.original_language}}ciao</h3>
       <i class="far fa-star"></i>
       <h4>{{film.vote_average}}</h4>
-      <div class="flag">
-        <img :src="element.flag" alt="">
-      </div>
+        <div class="flag">
+          <img :src="film.flag" alt="">
+        </div>
     </div>   <!-- / cartolina -->
   </main>
 </div>
