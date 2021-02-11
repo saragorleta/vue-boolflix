@@ -41,20 +41,20 @@ methods: {
         });
         this.associaBandiera();
       })
-      associaBandiera(){
+      .catch((error)=> alert('errori'));
+    },
+    associaBandiera(){
         this.films.forEach((element)=>{
-          if(element.language=='it-IT')) {
+          if(element.language=='it-IT') {
             element.flag=this.flag.it;
-          }else if(element.language=='en-EN')){
+          }else if(element.language=='en-EN'){
             element.flag=this.flag.en;
           }else{
             element.flag=this.flag.universal;
           }
-        }
+        });
       }
-      // Math.floor(Math.random() * 10) + 1)
-      .catch((error)=> alert('errori'));
-    }
+      // Math.floor(Math.random() * 10) + 1
 }
 
 });
