@@ -33,15 +33,14 @@
     <div class="cartolina" v-for="film in films">
       <h1>{{film.title}}</h1>
       <h2>{{film.original_title}}</h2>
-      <img :src="film.backdrop_path" alt="">
+      <img :src="'image.tmdb.org/t/p/w342/'+ film.poster_path" alt="">
       <h3>{{film.language}}</h3>
       <i class="far fa-star"></i>
       <h4>{{film.vote_average}}</h4>
-      <div class="flags" v-for="(element) in flags" @click='associaBandiera'>
-        <img :src="element.flags" alt="">
+      <div class="flag">
+        <img :src="element.flag" alt="">
       </div>
-
-    </div>
+    </div>   <!-- / cartolina -->
   </main>
 </div>
 
