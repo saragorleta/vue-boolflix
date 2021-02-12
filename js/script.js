@@ -2,16 +2,24 @@ var app= new Vue({
   el:'#app',
   data: {
     films:[
-      {
-        visible:'true',
-      }
+      // {
+      //   // visible:'true',
+      // }
     ],
+    // descrizioneFilm:[
+    //   titolo:
+    //   titoloOriginale:
+    //   linguaOriginale:
+    //   cast:
+    //   actors:
+    //   flag:
+    //   voto:
+    // ],
 
-    flag: {
-      it:'img/it.png',
-      en:'img/en.png',
-      universal:'img/universal.png'
-    },
+    flag: [
+      "it","en"
+    ]
+    ,
 
     query:'',
     apiKey:'37952e1279b3094fa8f659fc5cc54db8',
@@ -19,6 +27,15 @@ var app= new Vue({
   },
 
 methods: {
+
+  ottieniVoto(voto){
+    return parseInt(voto / 2);
+  },
+
+  associaBandiera(language){
+      return 'img/'+ language + '.png'
+    },
+
   search(){
     axios
       .get("https://api.themoviedb.org/3/search/movie",{
@@ -32,32 +49,43 @@ methods: {
         // console.log(result.data.results);
         this.films=result.data.results;
         // funzione per ricercare nomi films
-        this.films.forEach((element, i) => {
-          if(element.title.includes(this.query)){
-            element.visible=true;
-          } else {
-            element.visible=false;
-          }
-        });
-        this.associaBandiera();
+        // this.films.forEach((element, i) => {
+        //   if(element.title.includes(this.query)){
+        //     element.visible=true;
+        //   } else {
+        //     element.visible=false;
+        //   }
+        // });
+        // this.associaBandiera();
       })
       .catch((error)=> alert('errori'));
     },
-    associaBandiera(){
-        this.films.forEach((element)=>{
-          if(element.language=='it-IT') {
-            element.flag=this.flag.it;
-          }else if(element.language=='en-EN'){
-            element.flag=this.flag.en;
-          }else{
-            element.flag=this.flag.universal;
-          }
-        });
-      }
-      // Math.floor(Math.random() * 10) + 1
+
+
 }
 
 });
+
+
+
+
+// funzionehover
+// hover(){
+//   this.descrizioneFilm(element, index)=>{
+//     if(descrizioneFilm==visible){
+//       return=true;
+//     }else{
+//       return=false;
+//     }
+//
+//   }
+// }
+
+
+
+
+
+
 
 // per visualizzare le copertine appena si carica la pagina
 // mounted(){

@@ -11,6 +11,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous"></script>
   <!-- link google font -->
   <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+  <!-- cdn fontawesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -31,18 +33,29 @@
 </header>
   <main>
     <div class="contenitore-film" v-for="film in films">
-      <h1>{{film.title}}ciao</h1>
-      <h2>{{film.original_title}}ciao</h2>
+
         <div class="copertina">
           <img :src="'https://image.tmdb.org/t/p/w342/'+ film.poster_path" alt="">
+          <!-- v-if=":src="'https://image.tmdb.org/t/p/w342/'+ film.poster_path"==true"
+          v-else=":src=''" -->
         </div>
-      <h3>{{film.original_language}}ciao</h3>
-      <i class="far fa-star"></i>
-      <h4>{{film.vote_average}}</h4>
-        <div class="flag">
-          <img :src="film.flag" alt="">
-        </div>
-    </div>   <!-- / cartolina -->
+
+        <div class="descrizione layover">
+          <h1>Titolo: {{film.title}}</h1>
+          <h2>Titolo originale: {{film.original_title}}</h2>
+          <h3>Lingua originale: {{film.original_language}}</h3>
+
+          <!-- trasformazione voto numerico in stelline -->
+            <i v-for="i in ottieniVoto(film.vote_average)" class="fas fa-star"></i>
+            <i v-for="i in (5 - ottieniVoto(film.vote_average))" class="far fa-star"></i>
+
+          <!--trasformazione lingua originale in immagine bandiera -->
+          <img v-if="flag.includes(film.original_language)" :src="associaBandiera(film.original_language)" alt="">
+          <img v-else src="img/universal.png" alt="">
+
+        </div>    <!-- /descrizione layover -->
+    </div>   <!-- / contenitore-film -->
+
   </main>
 </div>
 
