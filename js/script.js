@@ -6,15 +6,6 @@ var app= new Vue({
       //   // visible:'true',
       // }
     ],
-    // descrizioneFilm:[
-    //   titolo:
-    //   titoloOriginale:
-    //   linguaOriginale:
-    //   cast:
-    //   actors:
-    //   flag:
-    //   voto:
-    // ],
 
     flag: [
       "it","en"
@@ -25,46 +16,60 @@ var app= new Vue({
     apiKey:'37952e1279b3094fa8f659fc5cc54db8',
     language:'it-IT',
   },
-
-methods: {
-
-  ottieniVoto(voto){
-    return parseInt(voto / 2);
-  },
-
-  associaBandiera(language){
-      return 'img/'+ language + '.png'
-    },
-
-  search(){
+  // per visualizzare le copertine appena si carica la pagina
+  mounted(){
     axios
       .get("https://api.themoviedb.org/3/search/movie",{
         params: {
           api_key:this.apiKey,
-          query:this.query,
-          language:this.language,
+          query:'disney',
+          language:this.language
         }
       })
       .then((result)=>{
-        // console.log(result.data.results);
         this.films=result.data.results;
-        // funzione per ricercare nomi films
-        // this.films.forEach((element, i) => {
-        //   if(element.title.includes(this.query)){
-        //     element.visible=true;
-        //   } else {
-        //     element.visible=false;
-        //   }
-        // });
-        // this.associaBandiera();
       })
-      .catch((error)=> alert('errori'));
+  },
+
+  methods: {
+
+    ottieniVoto(voto){
+      return parseInt(voto / 2);
     },
 
+    associaBandiera(language){
+        return 'img/'+ language + '.png'
+      },
 
-}
+    search(){
+      axios
+        .get("https://api.themoviedb.org/3/search/movie",{
+          params: {
+            api_key:this.apiKey,
+            query:this.query,
+            language:this.language,
+          }
+        })
+        .then((result)=>{
+          // console.log(result.data.results);
+          this.films=result.data.results;
+          // funzione per ricercare nomi films
+          // this.films.forEach((element, i) => {
+          //   if(element.title.includes(this.query)){
+          //     element.visible=true;
+          //   } else {
+          //     element.visible=false;
+          //   }
+          // });
+          // this.associaBandiera();
+        })
+        .catch((error)=> alert('errori'));
+      },
 
-});
+
+  }
+
+  });
 
 
 
@@ -81,23 +86,4 @@ methods: {
 //   }
 // }
 
-
-
-
-
-
-
 // per visualizzare le copertine appena si carica la pagina
-// mounted(){
-//   axios
-//     .get("https://api.themoviedb.org/3/search/movie",{
-//       params: {
-//         api_key:this.apiKey,
-//         query:this.query,
-//         language:this.language
-//       }
-//     })
-//     .then((result)=>{
-//       this.films=result.data.results;
-//     })
-// }

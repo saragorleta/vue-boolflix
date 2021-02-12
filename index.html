@@ -35,9 +35,9 @@
     <div class="contenitore-film" v-for="film in films">
 
         <div class="copertina">
-          <img :src="'https://image.tmdb.org/t/p/w342/'+ film.poster_path" alt="">
-          <!-- v-if=":src="'https://image.tmdb.org/t/p/w342/'+ film.poster_path"==true"
-          v-else=":src=''" -->
+
+          <img v-if="film.poster_path !='null'" :src="'https://image.tmdb.org/t/p/w342/'+ film.poster_path" alt="">
+          <img v-else src="img/netflix.png" alt="">
         </div>
 
         <div class="descrizione layover">
